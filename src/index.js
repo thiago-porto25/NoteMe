@@ -4,10 +4,12 @@ import { BrowserRouter as Router } from "react-router-dom"
 import FirebaseContext from "./context/firebaseContext"
 import * as firebase from "./firebase/config"
 import App from "./App"
+import { GlobalStyles } from "./globalStyles"
 
 ReactDOM.render(
   <Router>
     <FirebaseContext.Provider value={{ ...firebase }}>
+      <GlobalStyles />
       <App />
     </FirebaseContext.Provider>
   </Router>,
