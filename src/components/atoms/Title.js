@@ -1,5 +1,12 @@
-import React from "react"
+import styled from "styled-components"
 
-export default function Title() {
-  return <div></div>
+const Text = styled.p`
+  color: var(--white);
+  font-size: 23px;
+  font-weight: bold;
+  opacity: 0.87;
+`
+
+export default function Title({ text }) {
+  return <Text>{text}</Text>
 }

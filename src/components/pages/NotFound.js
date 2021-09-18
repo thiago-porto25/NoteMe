@@ -1,5 +1,9 @@
-import React from "react"
+import NotFoundTemplate from "../templates/NotFoundTemplate"
 
 export default function NotFound() {
-  return <div></div>
+  return (
+    <>
+      <NotFoundTemplate />
+    </>
+  )
 }
