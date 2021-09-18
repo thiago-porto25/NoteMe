@@ -9,7 +9,9 @@
 /coverage
 
 # production
+config.js
 /build
+dataModels.txt
 
 # misc
 .DS_Store
