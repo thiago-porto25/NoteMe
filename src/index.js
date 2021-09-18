@@ -5,6 +5,7 @@ import FirebaseContext from "./context/firebaseContext"
 import * as firebase from "./firebase/config"
 import App from "./App"
 import { GlobalStyles } from "./globalStyles"
+import "normalize.css/normalize.css"
 
 ReactDOM.render(
   <Router>
