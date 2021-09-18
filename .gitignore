@@ -13,6 +13,7 @@ config.js
 /build
 dataModels.txt
 pagesModel.txt
+ToDos.txt
 
 # misc
 .DS_Store
