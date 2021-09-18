@@ -12,6 +12,7 @@
 config.js
 /build
 dataModels.txt
+pagesModel.txt
 
 # misc
 .DS_Store
