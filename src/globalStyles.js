@@ -8,4 +8,13 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 16px;
     margin: 0;
   }
+
+  :root {
+    --bg: #121212;
+    --white: #ffffff;
+    --aboveBg: #282828;
+    --primary: #bb86fc;
+    --error: #cf6679;
+    --success: #4caf50;
+  }
 `
