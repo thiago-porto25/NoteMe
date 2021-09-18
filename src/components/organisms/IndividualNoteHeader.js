@@ -1,5 +1,5 @@
 import React from "react"
 
-export default function BreakLine() {
+export default function IndividualNoteHeader() {
   return <div></div>
 }

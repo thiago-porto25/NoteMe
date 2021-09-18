@@ -1,5 +1,5 @@
 import React from "react"
 
-export default function BreakLine() {
+export default function SpecialButton() {
   return <div></div>
 }
