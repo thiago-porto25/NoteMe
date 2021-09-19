@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import { MaxWidthContainer, AuthFrame } from "../bosons"
-import { Logo, Anchor } from "../atoms"
+import { Logo, Anchor, AuthText } from "../atoms"
 import { LoginForm } from "../molecules"
 import * as ROUTES from "../../constants/routes"
 
@@ -15,7 +15,7 @@ const LoginTemplateContainer = styled.section`
 
     form {
       margin-bottom: 20px;
-      margin-top: 40px;
+      margin-top: 20px;
     }
   }
 `
@@ -26,6 +26,7 @@ export default function LoginTemplate() {
       <LoginTemplateContainer>
         <AuthFrame>
           <Logo />
+          <AuthText>Log in</AuthText>
           <LoginForm />
           <Anchor textLink="Sign up" to={ROUTES.SIGNUP}>
             Don't have an account?
