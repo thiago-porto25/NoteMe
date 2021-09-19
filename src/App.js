@@ -7,7 +7,6 @@ import {
   Home,
   Login,
   Signup,
-  Settings,
   ForgotPassword,
   NotFound
 } from "./components/pages"
@@ -20,10 +19,6 @@ function App() {
       <Switch>
         <ProtectedRoute user={user} exact path={ROUTES.HOME}>
           <Home />
-        </ProtectedRoute>
-
-        <ProtectedRoute user={user} path={ROUTES.SETTINGS}>
-          <Settings />
         </ProtectedRoute>
 
         <IsUserRedirect
