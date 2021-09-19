@@ -5,10 +5,23 @@ import { LoginForm } from "../molecules"
 import * as ROUTES from "../../constants/routes"
 
 const LoginTemplateContainer = styled.section`
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   min-height: 100vh;
+
+  @media (max-width: 950px) {
+    grid-template-columns: 1fr;
+  }
+
+  .login-image {
+    max-width: 500px;
+
+    @media (max-width: 950px) {
+      display: none;
+    }
+  }
 
   .auth-frame {
     padding: 30px 30px;
@@ -24,6 +37,11 @@ export default function LoginTemplate() {
   return (
     <MaxWidthContainer>
       <LoginTemplateContainer>
+        <img
+          className="login-image"
+          src="/images/login.svg"
+          alt="Login illustration"
+        />
         <AuthFrame>
           <Logo />
           <AuthText>Log in</AuthText>

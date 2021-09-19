@@ -1,5 +1,11 @@
-import React from "react"
+import styled from "styled-components"
+
+const Foot = styled.footer``
 
 export default function Footer() {
-  return <div></div>
+  return (
+    <Foot>
+      <a href="https://storyset.com/people">People illustrations by Storyset</a>
+    </Foot>
+  )
 }

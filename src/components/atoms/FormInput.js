@@ -19,13 +19,20 @@ const Input = styled.input`
   }
 `
 
-export default function FormInput({ type, value, setValue, placeholder }) {
+export default function FormInput({
+  type,
+  value,
+  setValue,
+  placeholder,
+  minLength
+}) {
   return (
     <Input
       type={type}
       value={value}
       onChange={({ target }) => setValue(target.value)}
       placeholder={placeholder}
+      minLength={minLength}
     />
   )
 }

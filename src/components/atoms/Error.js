@@ -1,5 +1,12 @@
-import React from "react"
+import styled from "styled-components"
 
-export default function Error() {
-  return <div></div>
+const Err = styled.p`
+  color: var(--error);
+  margin-bottom: 0;
+  width: 100%;
+  text-align: center;
+`
+
+export default function Error({ children }) {
+  return <Err>{children}</Err>
 }

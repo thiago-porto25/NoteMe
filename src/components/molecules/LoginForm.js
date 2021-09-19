@@ -16,7 +16,7 @@ const Form = styled.form`
 export default function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
+  const [error, setError] = useState("Incorrect password")
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -29,15 +29,17 @@ export default function LoginForm() {
         value={email}
         setValue={setEmail}
         placeholder="E-mail"
+        minLength="5"
       />
       <FormInput
         type="password"
         value={password}
         setValue={setPassword}
         placeholder="Password"
+        minLength="6"
       />
       <FormButton type="submit">Log in</FormButton>
-      {error && <Error message={error} />}
+      {error && <Error>{error}</Error>}
     </Form>
   )
 }

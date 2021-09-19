@@ -10,6 +10,7 @@ const Form = styled.form`
 
   button {
     margin-top: 20px;
+    width: 90%;
   }
 `
 
@@ -18,7 +19,9 @@ export default function SignupForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const [error, setError] = useState("")
+  const [error, setError] = useState(
+    "Something went wrong! Something went wrong! Something went wrong!"
+  )
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -31,27 +34,31 @@ export default function SignupForm() {
         value={name}
         setValue={setName}
         placeholder="Name"
+        minLength="3"
       />
       <FormInput
         type="email"
         value={email}
         setValue={setEmail}
         placeholder="E-mail"
+        minLength="6"
       />
       <FormInput
         type="password"
         value={password}
         setValue={setPassword}
         placeholder="Password"
+        minLength="6"
       />
       <FormInput
         type="password"
         value={confirmPassword}
         setValue={setConfirmPassword}
         placeholder="Confim password"
+        minLength="6"
       />
       <FormButton type="submit">Sign up</FormButton>
-      {error && <Error message={error} />}
+      {error && <Error>{error}</Error>}
     </Form>
   )
 }
