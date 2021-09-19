@@ -13,6 +13,7 @@ export const GlobalStyles = createGlobalStyle`
     --bg: #121212;
     --white: #ffffff;
     --aboveBg: #282828;
+    --thirdLayer: #404040;
     --primary: #bb86fc;
     --error: #cf6679;
     --success: #4caf50;

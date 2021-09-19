@@ -1,5 +1,16 @@
-import React from "react"
+import styled from "styled-components"
+import { Link } from "react-router-dom"
 
-export default function Anchor() {
-  return <div></div>
+const Text = styled.p`
+  color: var(--white);
+  opacity: 0.87;
+  text-align: center;
+`
+
+export default function Anchor({ to, textLink, children }) {
+  return (
+    <Text>
+      {children} <Link to={to}>{textLink}</Link>
+    </Text>
+  )
 }
