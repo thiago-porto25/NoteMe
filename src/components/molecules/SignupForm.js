@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
-import { FormInput, FormButton } from "../atoms"
+import { FormInput, FormButton, Error } from "../atoms"
 
 const Form = styled.form`
   display: flex;
@@ -51,6 +51,7 @@ export default function SignupForm() {
         placeholder="Confim password"
       />
       <FormButton type="submit">Sign up</FormButton>
+      {error && <Error message={error} />}
     </Form>
   )
 }

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import styled from "styled-components"
-import { FormInput, FormButton } from "../atoms"
+import { FormInput, FormButton, Error } from "../atoms"
 
 const Form = styled.form`
   display: flex;
@@ -16,6 +16,7 @@ const Form = styled.form`
 export default function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -36,6 +37,7 @@ export default function LoginForm() {
         placeholder="Password"
       />
       <FormButton type="submit">Log in</FormButton>
+      {error && <Error message={error} />}
     </Form>
   )
 }
