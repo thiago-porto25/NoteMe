@@ -1,5 +1,9 @@
-import React from "react"
+import SignupTemplate from "../templates/SignupTemplate"
 
 export default function Signup() {
-  return <div></div>
+  return (
+    <>
+      <SignupTemplate />
+    </>
+  )
 }
