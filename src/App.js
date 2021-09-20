@@ -10,6 +10,7 @@ import {
   ForgotPassword,
   NotFound
 } from "./components/pages"
+import { logoutWithFirebase } from "./services/authFunctionsFirebase"
 
 function App() {
   const { user } = useAuthListener()
@@ -18,6 +19,7 @@ function App() {
     <UserContext.Provider value={user}>
       <Switch>
         <ProtectedRoute user={user} exact path={ROUTES.HOME}>
+          <button onClick={logoutWithFirebase}>Sign out</button>
           <Home />
         </ProtectedRoute>
 
