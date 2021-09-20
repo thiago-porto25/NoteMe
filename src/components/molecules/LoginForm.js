@@ -34,12 +34,9 @@ export default function LoginForm() {
       setEmail,
       setPassword
     })
-
-    setLoading(false)
   }
 
   const isDisabled = email.length <= 6 || password.length <= 5 ? true : false
-  console.log(isDisabled)
 
   return (
     <Form onSubmit={handleSubmit} method="POST">
