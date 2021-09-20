@@ -29,7 +29,13 @@ export default function SignupForm() {
 
     setLoading(true)
 
-    await createUserWithFirebase({ email, password, name, setError })
+    await createUserWithFirebase({
+      email,
+      password,
+      name,
+      setError,
+      setLoading
+    })
   }
 
   const isDisabled =

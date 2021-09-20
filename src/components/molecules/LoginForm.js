@@ -32,7 +32,8 @@ export default function LoginForm() {
       password,
       setError,
       setEmail,
-      setPassword
+      setPassword,
+      setLoading
     })
   }
 

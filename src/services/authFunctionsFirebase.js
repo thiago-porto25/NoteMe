@@ -16,11 +16,13 @@ export const loginWithFirebase = async ({
   password,
   setError,
   setEmail,
-  setPassword
+  setPassword,
+  setLoading
 }) => {
   try {
     await signInWithEmailAndPassword(auth, email, password)
   } catch (error) {
+    setLoading(false)
     setEmail("")
     setPassword("")
     setError(error.message)
