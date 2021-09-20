@@ -1,6 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 import { FormInput, FormButton, Error } from "../atoms"
+import { createUserWithFirebase } from "../../services/authFunctionsFirebase"
 
 const Form = styled.form`
   display: flex;
@@ -10,7 +11,6 @@ const Form = styled.form`
 
   button {
     margin-top: 20px;
-    width: 90%;
   }
 `
 
@@ -19,13 +19,26 @@ export default function SignupForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
-  const [error, setError] = useState(
-    "Something went wrong! Something went wrong! Something went wrong!"
-  )
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+
+    setError("")
+
+    setLoading(true)
+
+    await createUserWithFirebase({ email, password, name, setError })
+
+    setLoading(false)
   }
+
+  const isDisabled =
+    email.length <= 6 ||
+    password.length <= 5 ||
+    name.length <= 2 ||
+    confirmPassword !== password
 
   return (
     <Form onSubmit={handleSubmit} method="POST">
@@ -35,13 +48,15 @@ export default function SignupForm() {
         setValue={setName}
         placeholder="Name"
         minLength="3"
+        required
       />
       <FormInput
         type="email"
         value={email}
         setValue={setEmail}
         placeholder="E-mail"
-        minLength="6"
+        minLength="7"
+        required
       />
       <FormInput
         type="password"
@@ -49,6 +64,7 @@ export default function SignupForm() {
         setValue={setPassword}
         placeholder="Password"
         minLength="6"
+        required
       />
       <FormInput
         type="password"
@@ -56,8 +72,11 @@ export default function SignupForm() {
         setValue={setConfirmPassword}
         placeholder="Confim password"
         minLength="6"
+        required
       />
-      <FormButton type="submit">Sign up</FormButton>
+      <FormButton disabled={isDisabled} loading={loading} type="submit">
+        Sign up
+      </FormButton>
       {error && <Error>{error}</Error>}
     </Form>
   )

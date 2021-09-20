@@ -1,6 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
-import { FormInput, FormButton, Error } from "../atoms"
+import { FormInput, FormButton, Error, Success } from "../atoms"
+import { sendResetPasswordWithFirebase } from "../../services/authFunctionsFirebase"
 
 const Form = styled.form`
   display: flex;
@@ -15,11 +16,24 @@ const Form = styled.form`
 
 export default function ForgotPasswordForm() {
   const [email, setEmail] = useState("")
-  const [error, setError] = useState("Error in our servers")
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState("")
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+
+    setError("")
+    setSuccess("")
+
+    setLoading(true)
+
+    await sendResetPasswordWithFirebase({ email, setError, setSuccess })
+
+    setLoading(false)
   }
+
+  const isDisabled = email.length <= 6
 
   return (
     <Form onSubmit={handleSubmit} method="POST">
@@ -28,10 +42,13 @@ export default function ForgotPasswordForm() {
         value={email}
         setValue={setEmail}
         placeholder="E-mail"
-        minLength="6"
+        minLength="7"
       />
-      <FormButton type="submit">Reset Password</FormButton>
+      <FormButton disabled={isDisabled} loading={loading} type="submit">
+        Reset Password
+      </FormButton>
       {error && <Error>{error}</Error>}
+      {success && <Success>{success}</Success>}
     </Form>
   )
 }

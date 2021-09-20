@@ -3,11 +3,13 @@ import styled from "styled-components"
 const Input = styled.input`
   border: 1px solid grey;
   background-color: var(--thirdLayer);
-  padding: 5px 10px;
+  padding: 10px 10px;
   color: var(--white);
   opacity: 0.77;
   border-radius: 2px;
-  height: 1.8rem;
+  height: 2.5rem;
+  width: 15rem;
+  box-sizing: border-box;
 
   &:focus,
   :hover {
@@ -24,7 +26,8 @@ export default function FormInput({
   value,
   setValue,
   placeholder,
-  minLength
+  minLength,
+  ...rest
 }) {
   return (
     <Input
@@ -33,6 +36,7 @@ export default function FormInput({
       onChange={({ target }) => setValue(target.value)}
       placeholder={placeholder}
       minLength={minLength}
+      {...rest}
     />
   )
 }
