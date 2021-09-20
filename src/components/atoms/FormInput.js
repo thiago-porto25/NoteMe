@@ -19,6 +19,10 @@ const Input = styled.input`
   &:focus {
     outline: var(--primary) solid 1px;
   }
+
+  &:invalid {
+    border: 1px solid var(--error);
+  }
 `
 
 export default function FormInput({
