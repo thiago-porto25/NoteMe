@@ -1,6 +1,7 @@
 import { useState } from "react"
 import styled from "styled-components"
 import { FormInput, FormButton, Error } from "../atoms"
+import { loginWithFirebase } from "../../services/authFunctionsFirebase"
 
 const Form = styled.form`
   display: flex;
@@ -16,11 +17,29 @@ const Form = styled.form`
 export default function LoginForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [error, setError] = useState("Incorrect password")
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+
+    setError("")
+
+    setLoading(true)
+
+    await loginWithFirebase({
+      email,
+      password,
+      setError,
+      setEmail,
+      setPassword
+    })
+
+    setLoading(false)
   }
+
+  const isDisabled = email.length <= 6 || password.length <= 5 ? true : false
+  console.log(isDisabled)
 
   return (
     <Form onSubmit={handleSubmit} method="POST">
@@ -29,7 +48,7 @@ export default function LoginForm() {
         value={email}
         setValue={setEmail}
         placeholder="E-mail"
-        minLength="5"
+        minLength="7"
       />
       <FormInput
         type="password"
@@ -38,7 +57,9 @@ export default function LoginForm() {
         placeholder="Password"
         minLength="6"
       />
-      <FormButton type="submit">Log in</FormButton>
+      <FormButton disabled={isDisabled} loading={loading} type="submit">
+        Log in
+      </FormButton>
       {error && <Error>{error}</Error>}
     </Form>
   )
