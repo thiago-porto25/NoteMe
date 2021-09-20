@@ -3,7 +3,7 @@ import { IconStyle } from "../bosons"
 import { UserDropdownToggle } from "../atoms"
 import { InfoDropdown, UserDropdown } from "../molecules"
 import { useContext, useState } from "react"
-import { UserContext } from "../../context/userContext"
+import UserContext from "../../context/userContext"
 
 const NoteHeaderContainer = styled.header`
   display: flex;
