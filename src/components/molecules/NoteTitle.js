@@ -98,6 +98,10 @@ export default function NoteTitle({ children }) {
     if (isEditing) inputRef.current.focus()
   }, [isEditing])
 
+  useEffect(() => {
+    setIsEditing(false)
+  }, [currentNote])
+
   const isSaveDisabled = inputValue.length < 2
 
   return (
