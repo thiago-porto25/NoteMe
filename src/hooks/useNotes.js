@@ -16,6 +16,7 @@ export default function useNotes({ uid = "" }) {
       const q = await query(notesRef, where("authorId", "==", uid))
 
       const unsub = await onSnapshot(q, (querySnapshot) => {
+        setUserNotes([])
         querySnapshot.forEach((doc) =>
           setUserNotes((prev) => {
             return [...prev, doc.data()]
@@ -35,7 +36,7 @@ export default function useNotes({ uid = "" }) {
     return () => {
       cleanup()
     }
-  }, [uid])
+  }, [])
 
   return { userNotes }
 }
