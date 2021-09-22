@@ -4,7 +4,7 @@ import FirebaseContext from "../context/firebaseContext"
 
 export default function useNotes({ uid = "" }) {
   const [userNotes, setUserNotes] = useState([])
-  const { db, onSnapshot, collection, query, where } =
+  const { db, onSnapshot, collection, query, where, orderBy } =
     useContext(FirebaseContext)
 
   useEffect(() => {
@@ -13,7 +13,11 @@ export default function useNotes({ uid = "" }) {
     const listenForNotes = async () => {
       const notesRef = await collection(db, "notes")
 
-      const q = await query(notesRef, where("authorId", "==", uid))
+      const q = await query(
+        notesRef,
+        where("authorId", "==", uid),
+        orderBy("createdAt", "asc")
+      )
 
       const unsub = await onSnapshot(q, (querySnapshot) => {
         setUserNotes([])
