@@ -7,6 +7,7 @@ import {
   deleteDoc
 } from "../firebase/config"
 import { v4 as uuid } from "uuid"
+import faker from "faker"
 
 //////////////Create Note
 export const createNoteWithFirebase = async ({ setError }) => {
@@ -16,9 +17,8 @@ export const createNoteWithFirebase = async ({ setError }) => {
     const defaultNote = {
       id: randomId,
       authorId: auth.currentUser.uid,
-      title: "Untitled",
-      content:
-        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
+      title: "New Note",
+      content: faker.lorem.sentences(2),
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     }
