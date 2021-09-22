@@ -1,5 +1,23 @@
-import React from "react"
+import styled from "styled-components"
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai"
 
-export default function UserDropdownToggle() {
-  return <div></div>
+const UserDropdownToggleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem;
+  color: var(--primary);
+
+  p {
+    user-select: none;
+  }
+`
+
+export default function UserDropdownToggle({ children, isDropdownOpen }) {
+  return (
+    <UserDropdownToggleContainer>
+      {!isDropdownOpen ? <AiFillCaretDown /> : <AiFillCaretUp />}
+      <p>{children}</p>
+    </UserDropdownToggleContainer>
+  )
 }
