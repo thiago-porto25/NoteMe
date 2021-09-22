@@ -59,7 +59,7 @@ export default function NotesListItem({ note, currentNote, setCurrentNote }) {
 
   return (
     <NotesListItemContainer
-      className={currentNote.id === note.id ? "selected" : null}
+      className={currentNote && currentNote.id === note.id ? "selected" : null}
       onClick={handleClick}
     >
       <div className="notes-list-item-inner">

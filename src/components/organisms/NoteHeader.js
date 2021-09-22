@@ -55,20 +55,24 @@ export default function NoteHeader() {
   return (
     <NoteHeaderContainer>
       <div className="note-header-icons-container">
-        <div onClick={handleDelete} className="note-header-icon">
-          <IconStyle>
-            <FiTrash2 />
-          </IconStyle>
-        </div>
+        {currentNote && (
+          <>
+            <div onClick={handleDelete} className="note-header-icon">
+              <IconStyle>
+                <FiTrash2 />
+              </IconStyle>
+            </div>
 
-        <div
-          onClick={() => setDropdownInfo((prev) => !prev)}
-          className="note-header-icon"
-        >
-          <IconStyle>
-            <AiOutlineInfoCircle />
-          </IconStyle>
-        </div>
+            <div
+              onClick={() => setDropdownInfo((prev) => !prev)}
+              className="note-header-icon"
+            >
+              <IconStyle>
+                <AiOutlineInfoCircle />
+              </IconStyle>
+            </div>
+          </>
+        )}
 
         {dropdownInfo && (
           <InfoDropdown

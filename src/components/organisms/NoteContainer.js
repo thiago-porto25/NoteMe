@@ -1,14 +1,17 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import styled from "styled-components"
 import { NoteInput } from "../atoms"
-import { NoteSave, NoteTitle } from "../molecules"
+import { NoteSave, NoteTitle, NoNoteSelected } from "../molecules"
+import NotesContext from "../../context/notesContext"
 
 const NoteContainerContainer = styled.div``
 
 export default function NoteContainer() {
+  const { currentNote, setCurrentNote } = useContext(NotesContext)
+
   const [loading, setLoading] = useState(false)
 
-  return (
+  return currentNote ? (
     <NoteContainerContainer>
       <div>
         <NoteTitle>title</NoteTitle>
@@ -20,5 +23,7 @@ export default function NoteContainer() {
         <NoteSave loading={loading} />
       </div>
     </NoteContainerContainer>
+  ) : (
+    <NoNoteSelected />
   )
 }
