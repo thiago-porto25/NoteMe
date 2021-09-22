@@ -1,7 +1,8 @@
 import styled from "styled-components"
 import { FiLogOut } from "react-icons/fi"
 import { logoutWithFirebase } from "../../services/authFunctionsFirebase"
-import { useState } from "react/cjs/react.development"
+import { useContext } from "react"
+import NotesContext from "../../context/notesContext"
 
 const UserDropdownContainer = styled.div`
   background-color: var(--thirdLayer);
@@ -28,7 +29,7 @@ const UserDropdownContainer = styled.div`
 `
 
 export default function UserDropdown() {
-  const [error, setError] = useState("testing")
+  const { setError } = useContext(NotesContext)
 
   const handleClick = () => {
     logoutWithFirebase({ setError })
