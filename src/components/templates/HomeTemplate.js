@@ -8,9 +8,17 @@ import {
 
 const HomeTemplateContainer = styled.section`
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 5fr);
   width: 100%;
   height: 100vh;
+
+  .sidebar {
+    border-left: 1px solid #888;
+  }
+
+  .note-container-frame {
+    border-left: 1px solid #888;
+  }
 `
 
 export default function HomeTemplate() {

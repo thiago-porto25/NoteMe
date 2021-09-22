@@ -1,5 +1,33 @@
-import React from "react"
+import { useContext } from "react"
+import styled from "styled-components"
+import { NotesListItem } from "../molecules"
+import NotesContext from "../../context/notesContext"
+
+const NotesListContainer = styled.div`
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`
 
 export default function NotesList() {
-  return <div></div>
+  const { userNotes, setCurrentNote, currentNote } = useContext(NotesContext)
+
+  return (
+    <NotesListContainer>
+      {userNotes.map((note, i) => (
+        <NotesListItem
+          currentNote={currentNote}
+          setCurrentNote={setCurrentNote}
+          note={note}
+          key={`${note}-${i}`}
+        />
+      ))}
+    </NotesListContainer>
+  )
 }
