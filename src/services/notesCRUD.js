@@ -1,21 +1,14 @@
 import {
   auth,
   db,
-  collection,
-  getDoc,
-  getDocs,
   setDoc,
-  addDoc,
   serverTimestamp,
   doc,
-  onSnapshot,
-  query,
-  where,
   deleteDoc
 } from "../firebase/config"
 import { v4 as uuid } from "uuid"
 
-////Create Note
+//////////////Create Note
 export const createNoteWithFirebase = async ({ setError }) => {
   try {
     const randomId = uuid()
@@ -36,7 +29,7 @@ export const createNoteWithFirebase = async ({ setError }) => {
   }
 }
 
-////Update Note
+//////////////Update Note Title
 export const setNoteTitleWithFirebase = async ({
   inputValue,
   currentNote,
@@ -54,7 +47,7 @@ export const setNoteTitleWithFirebase = async ({
   }
 }
 
-////Delete Note
+//////////////Delete Note
 export const deleteNoteWithFirebase = async ({ currentNote, setError }) => {
   try {
     const noteRef = doc(db, "notes", currentNote.id)
@@ -62,5 +55,20 @@ export const deleteNoteWithFirebase = async ({ currentNote, setError }) => {
     await deleteDoc(noteRef)
   } catch (error) {
     setError(error)
+  }
+}
+
+//////////////Update Note Content
+export const setNoteContentWithFirebase = async ({
+  noteValue,
+  currentNote,
+  setError
+}) => {
+  try {
+    const noteRef = doc(db, "notes", currentNote.id)
+
+    await setDoc(noteRef, { content: noteValue }, { merge: true })
+  } catch (error) {
+    setError(error.message)
   }
 }
