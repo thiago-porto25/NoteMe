@@ -7,6 +7,7 @@ export const GlobalStyles = createGlobalStyle`
     color: #333333;
     font-size: 16px;
     margin: 0;
+    
   }
 
   :root {

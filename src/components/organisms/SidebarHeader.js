@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { SearchBar } from "../molecules"
 import { IconStyle } from "../bosons"
 import { FiPlus } from "react-icons/fi"
 import { useContext } from "react"
@@ -14,7 +13,7 @@ const SidebarHeaderContainer = styled.header`
   background-color: var(--aboveBg);
 
   .add-icon {
-    margin-left: -35px;
+    margin: 7.5px 20px;
     transition: 300ms ease-in-out;
 
     &:hover {
@@ -22,26 +21,22 @@ const SidebarHeaderContainer = styled.header`
       color: var(--primaryClear);
     }
   }
-
-  .search-frame {
-    margin: 10px 20px;
-    width: calc(100% - 70px);
-  }
 `
 
 export default function SidebarHeader() {
-  const { setError } = useContext(NotesContext)
+  const { setError, userNotes } = useContext(NotesContext)
 
   const handleAdd = async () => {
+    if (userNotes.length >= 8) {
+      setError("You have reached the maximum number of Notes!")
+      return
+    }
+
     await createNoteWithFirebase({ setError })
   }
 
   return (
     <SidebarHeaderContainer>
-      <div className="search-frame">
-        <SearchBar />
-      </div>
-
       <IconStyle>
         <FiPlus className="add-icon" onClick={handleAdd} />
       </IconStyle>
