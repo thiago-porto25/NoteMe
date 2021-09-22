@@ -14,7 +14,7 @@ export default function NoteContainer() {
   return currentNote ? (
     <NoteContainerContainer>
       <div>
-        <NoteTitle>title</NoteTitle>
+        <NoteTitle>{currentNote.title}</NoteTitle>
       </div>
       <div>
         <NoteInput />
