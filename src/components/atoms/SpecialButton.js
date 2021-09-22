@@ -9,14 +9,26 @@ const Button = styled.button`
   color: ${({ color }) => (color === "aboveBg" ? "white" : "")};
   border: none;
 
+  * {
+    width: 13px;
+    height: 13px;
+  }
+
   &:hover {
     background-color: ${({ color }) =>
       color === "aboveBg" ? "var(--thirdLayer)" : "var(--primaryClear)"};
   }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 `
 
-export default function SpecialButton({ children, loading, color }) {
+export default function SpecialButton({ children, loading, color, ...rest }) {
   return (
-    <Button color={color}>{loading ? <LoadingSpinner /> : children}</Button>
+    <Button {...rest} color={color}>
+      {loading ? <LoadingSpinner /> : children}
+    </Button>
   )
 }

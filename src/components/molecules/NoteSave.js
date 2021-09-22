@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { setNoteContentWithFirebase } from "../../services/notesCRUD"
 import { SpecialButton } from "../atoms"
 
 const NoteSaveContainer = styled.div`
@@ -8,14 +9,28 @@ const NoteSaveContainer = styled.div`
   gap: 15px;
 `
 
-export default function NoteSave({ loading }) {
+export default function NoteSave({
+  loading,
+  setLoading,
+  noteValue,
+  currentNote,
+  setError
+}) {
+  const handleSave = async () => {
+    setLoading(true)
+
+    await setNoteContentWithFirebase({ noteValue, currentNote, setError })
+
+    setLoading(false)
+  }
+
+  const isDisabled =
+    !!loading || noteValue.length < 1 || currentNote.content === noteValue
+
   return (
-    <NoteSaveContainer>
-      <SpecialButton color="primary" loading={loading}>
+    <NoteSaveContainer onClick={handleSave}>
+      <SpecialButton disabled={isDisabled} color="primary" loading={loading}>
         Save
-      </SpecialButton>
-      <SpecialButton color="aboveBg" loading={false}>
-        Cancel
       </SpecialButton>
     </NoteSaveContainer>
   )

@@ -9,6 +9,8 @@ const NotesListContainer = styled.div`
   width: 100%;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  background-color: var(--aboveBg);
+  height: calc(100% - 52.5px);
 
   &::-webkit-scrollbar {
     display: none;
