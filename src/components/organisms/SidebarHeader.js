@@ -2,6 +2,9 @@ import styled from "styled-components"
 import { SearchBar } from "../molecules"
 import { IconStyle } from "../bosons"
 import { FiPlus } from "react-icons/fi"
+import { useContext } from "react"
+import NotesContext from "../../context/notesContext"
+import { createNoteWithFirebase } from "../../services/notesCRUD"
 
 const SidebarHeaderContainer = styled.header`
   display: flex;
@@ -27,6 +30,12 @@ const SidebarHeaderContainer = styled.header`
 `
 
 export default function SidebarHeader() {
+  const { setError } = useContext(NotesContext)
+
+  const handleAdd = async () => {
+    await createNoteWithFirebase({ setError })
+  }
+
   return (
     <SidebarHeaderContainer>
       <div className="search-frame">
@@ -34,7 +43,7 @@ export default function SidebarHeader() {
       </div>
 
       <IconStyle>
-        <FiPlus className="add-icon" />
+        <FiPlus className="add-icon" onClick={handleAdd} />
       </IconStyle>
     </SidebarHeaderContainer>
   )
