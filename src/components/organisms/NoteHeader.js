@@ -19,7 +19,7 @@ const NoteHeaderContainer = styled.header`
   .note-header-icons-container {
     display: flex;
     gap: 20px;
-    padding: 10px 20px;
+    padding: 0px 20px;
 
     .note-header-icon {
       svg {
@@ -34,6 +34,7 @@ const NoteHeaderContainer = styled.header`
   }
 
   .note-header-user-dropdown-container {
+    padding-top: 1px;
     padding-right: 20px;
     position: relative;
   }

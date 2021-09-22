@@ -9,7 +9,6 @@ const NoNoteSelectedContainer = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  gap: 2rem;
 
   svg {
     color: var(--primary);

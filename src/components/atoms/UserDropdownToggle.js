@@ -5,7 +5,7 @@ const UserDropdownToggleContainer = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  gap: 0.5rem;
+  gap: 0.6rem;
   color: var(--primary);
 
   p {
