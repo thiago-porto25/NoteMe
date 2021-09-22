@@ -7,6 +7,7 @@ import UserContext from "../../context/userContext"
 import { FiTrash2 } from "react-icons/fi"
 import { AiOutlineInfoCircle } from "react-icons/ai"
 import NotesContext from "../../context/notesContext"
+import { deleteNoteWithFirebase } from "../../services/notesCRUD"
 
 const NoteHeaderContainer = styled.header`
   display: flex;
@@ -41,7 +42,7 @@ const NoteHeaderContainer = styled.header`
 `
 
 export default function NoteHeader() {
-  const { currentNote, setCurrentNote } = useContext(NotesContext)
+  const { currentNote, setCurrentNote, setError } = useContext(NotesContext)
 
   const [dropdownUser, setDropdownUser] = useState(false)
   const [dropdownInfo, setDropdownInfo] = useState(false)
@@ -50,7 +51,7 @@ export default function NoteHeader() {
 
   const handleDelete = () => {
     setCurrentNote(null)
-    //destroy document in firebase
+    deleteNoteWithFirebase({ currentNote, setError })
   }
 
   return (
