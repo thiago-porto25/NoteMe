@@ -52,7 +52,6 @@ export default function SignupForm() {
         setValue={setName}
         placeholder="Name"
         minLength="3"
-        required
       />
       <FormInput
         type="email"
@@ -60,7 +59,6 @@ export default function SignupForm() {
         setValue={setEmail}
         placeholder="E-mail"
         minLength="7"
-        required
       />
       <FormInput
         type="password"
@@ -68,7 +66,6 @@ export default function SignupForm() {
         setValue={setPassword}
         placeholder="Password"
         minLength="6"
-        required
       />
       <FormInput
         type="password"
@@ -76,7 +73,6 @@ export default function SignupForm() {
         setValue={setConfirmPassword}
         placeholder="Confim password"
         minLength="6"
-        required
       />
       <FormButton disabled={isDisabled} loading={loading} type="submit">
         Sign up
