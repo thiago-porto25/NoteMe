@@ -52,9 +52,17 @@ const NotesListItemContainer = styled.section`
   }
 `
 
-export default function NotesListItem({ note, currentNote, setCurrentNote }) {
+export default function NotesListItem({
+  note,
+  currentNote,
+  setCurrentNote,
+  mobileBarOpen,
+  setMobileBarOpen
+}) {
   const handleClick = () => {
     setCurrentNote(note)
+
+    if (mobileBarOpen) setMobileBarOpen(false)
   }
 
   return (

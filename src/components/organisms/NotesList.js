@@ -18,7 +18,7 @@ const NotesListContainer = styled.div`
   }
 `
 
-export default function NotesList() {
+export default function NotesList({ setMobileBarOpen, mobileBarOpen }) {
   const { userNotes, setCurrentNote, currentNote } = useContext(NotesContext)
 
   return (
@@ -30,6 +30,8 @@ export default function NotesList() {
             setCurrentNote={setCurrentNote}
             note={note}
             key={`${note}-${i}`}
+            mobileBarOpen={mobileBarOpen}
+            setMobileBarOpen={setMobileBarOpen}
           />
         ))
       ) : (

@@ -1,6 +1,7 @@
 import styled from "styled-components"
 import { IconStyle } from "../bosons"
 import { FiPlus } from "react-icons/fi"
+import { MdClose } from "react-icons/md"
 import { useContext } from "react"
 import NotesContext from "../../context/notesContext"
 import { createNoteWithFirebase } from "../../services/notesCRUD"
@@ -12,7 +13,8 @@ const SidebarHeaderContainer = styled.header`
   align-items: center;
   background-color: var(--aboveBg);
 
-  .add-icon {
+  .add-icon,
+  .close-icon {
     margin: 7.5px 20px;
     transition: 300ms ease-in-out;
 
@@ -21,9 +23,17 @@ const SidebarHeaderContainer = styled.header`
       color: var(--primaryClear);
     }
   }
+
+  .close-icon {
+    display: none;
+
+    @media (max-width: 620px) {
+      display: block;
+    }
+  }
 `
 
-export default function SidebarHeader() {
+export default function SidebarHeader({ mobileBarOpen, setMobileBarOpen }) {
   const { setNotification, userNotes } = useContext(NotesContext)
 
   const handleAdd = async () => {
@@ -40,6 +50,14 @@ export default function SidebarHeader() {
 
   return (
     <SidebarHeaderContainer>
+      <IconStyle>
+        {mobileBarOpen && (
+          <MdClose
+            className="close-icon"
+            onClick={() => setMobileBarOpen((prev) => !prev)}
+          />
+        )}
+      </IconStyle>
       <IconStyle>
         <FiPlus className="add-icon" onClick={handleAdd} />
       </IconStyle>
