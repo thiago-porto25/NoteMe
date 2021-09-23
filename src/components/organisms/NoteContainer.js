@@ -24,12 +24,19 @@ export default function NoteContainer() {
   const { currentNote, setError, setCurrentNote } = useContext(NotesContext)
 
   const [noteValue, setNoteValue] = useState("")
+  const [titleValue, setTitleValue] = useState("")
   const [loading, setLoading] = useState(false)
 
   return currentNote ? (
     <NoteContainerContainer>
       <div>
-        <NoteTitle>{currentNote.title}</NoteTitle>
+        <NoteTitle
+          titleValue={titleValue}
+          setTitleValue={setTitleValue}
+          currentNote={currentNote}
+          setCurrentNote={setCurrentNote}
+          setError={setError}
+        />
       </div>
       <div className="note-input-container">
         <NoteInput

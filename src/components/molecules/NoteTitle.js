@@ -1,9 +1,8 @@
-import { useState, useRef, useContext, useEffect } from "react"
+import { useState, useRef, useEffect } from "react"
 import styled from "styled-components"
 import { IconStyle } from "../bosons"
 import { BiEdit } from "react-icons/bi"
 import { setNoteTitleWithFirebase } from "../../services/notesCRUD"
-import NotesContext from "../../context/notesContext"
 
 const NoteTitleContainer = styled.div`
   border-bottom: 1px solid #888;
@@ -75,16 +74,20 @@ const NoteTitleContainer = styled.div`
   }
 `
 
-export default function NoteTitle({ children }) {
+export default function NoteTitle({
+  currentNote,
+  setCurrentNote,
+  setError,
+  titleValue,
+  setTitleValue
+}) {
   const [isEditing, setIsEditing] = useState(false)
-  const [inputValue, setInputValue] = useState("")
-
-  const { currentNote, setError } = useContext(NotesContext)
 
   const inputRef = useRef(null)
 
   const handleSave = async () => {
-    await setNoteTitleWithFirebase({ inputValue, currentNote, setError })
+    await setNoteTitleWithFirebase({ titleValue, currentNote, setError })
+    setCurrentNote((prev) => ({ ...prev, title: titleValue }))
     setIsEditing(false)
   }
 
@@ -92,7 +95,10 @@ export default function NoteTitle({ children }) {
     setIsEditing(true)
   }
 
-  useEffect(() => setInputValue(children), [children])
+  useEffect(
+    () => setTitleValue(currentNote.title),
+    [currentNote, setTitleValue]
+  )
 
   useEffect(() => {
     if (isEditing) inputRef.current.focus()
@@ -102,7 +108,7 @@ export default function NoteTitle({ children }) {
     setIsEditing(false)
   }, [currentNote])
 
-  const isSaveDisabled = inputValue.length < 2
+  const isSaveDisabled = titleValue.length < 2
 
   return (
     <NoteTitleContainer>
@@ -114,11 +120,11 @@ export default function NoteTitle({ children }) {
             type="text"
             maxLength="40"
             minLength="2"
-            value={inputValue}
-            onChange={({ target }) => setInputValue(target.value)}
+            value={titleValue}
+            onChange={({ target }) => setTitleValue(target.value)}
           />
         ) : (
-          <h1>{inputValue}</h1>
+          <h1>{titleValue}</h1>
         )}
 
         {isEditing ? (

@@ -30,9 +30,6 @@ export default function NoteSave({
   const isDisabled =
     !!loading || noteValue.length < 1 || currentNote.content === noteValue
 
-  console.log(currentNote.content)
-  console.log(noteValue)
-
   return (
     <NoteSaveContainer onClick={handleSave}>
       <SpecialButton disabled={isDisabled} color="primary" loading={loading}>

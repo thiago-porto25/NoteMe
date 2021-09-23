@@ -31,7 +31,7 @@ export const createNoteWithFirebase = async ({ setError }) => {
 
 //////////////Update Note Title
 export const setNoteTitleWithFirebase = async ({
-  inputValue,
+  titleValue,
   currentNote,
   setError
 }) => {
@@ -39,7 +39,7 @@ export const setNoteTitleWithFirebase = async ({
     const noteRef = doc(db, "notes", currentNote.id)
     await setDoc(
       noteRef,
-      { title: inputValue, updatedAt: serverTimestamp() },
+      { title: titleValue, updatedAt: serverTimestamp() },
       { merge: true }
     )
   } catch (error) {
