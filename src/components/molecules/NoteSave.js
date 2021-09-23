@@ -14,6 +14,7 @@ export default function NoteSave({
   setLoading,
   noteValue,
   currentNote,
+  setCurrentNote,
   setError
 }) {
   const handleSave = async () => {
@@ -21,11 +22,16 @@ export default function NoteSave({
 
     await setNoteContentWithFirebase({ noteValue, currentNote, setError })
 
+    setCurrentNote((prev) => ({ ...prev, content: noteValue }))
+
     setLoading(false)
   }
 
   const isDisabled =
     !!loading || noteValue.length < 1 || currentNote.content === noteValue
+
+  console.log(currentNote.content)
+  console.log(noteValue)
 
   return (
     <NoteSaveContainer onClick={handleSave}>
