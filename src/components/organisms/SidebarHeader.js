@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { IconStyle } from "../bosons"
+import { Logo } from "../atoms"
 import { FiPlus } from "react-icons/fi"
 import { MdClose } from "react-icons/md"
 import { useContext } from "react"
@@ -31,6 +32,14 @@ const SidebarHeaderContainer = styled.header`
       display: block;
     }
   }
+
+  .small-logo-container {
+    margin-left: 20px;
+
+    @media (max-width: 620px) {
+      margin: 0;
+    }
+  }
 `
 
 export default function SidebarHeader({ mobileBarOpen, setMobileBarOpen }) {
@@ -50,14 +59,19 @@ export default function SidebarHeader({ mobileBarOpen, setMobileBarOpen }) {
 
   return (
     <SidebarHeaderContainer>
-      <IconStyle>
-        {mobileBarOpen && (
+      {mobileBarOpen && (
+        <IconStyle>
           <MdClose
             className="close-icon"
             onClick={() => setMobileBarOpen((prev) => !prev)}
           />
-        )}
-      </IconStyle>
+        </IconStyle>
+      )}
+
+      <div className="small-logo-container">
+        <Logo size="small" />
+      </div>
+
       <IconStyle>
         <FiPlus className="add-icon" onClick={handleAdd} />
       </IconStyle>

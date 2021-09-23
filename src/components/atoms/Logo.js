@@ -5,7 +5,7 @@ const LogoText = styled.div`
   display: flex;
   align-items: center;
   color: var(--primary);
-  font-size: 3rem;
+  font-size: ${({ size }) => (size === "small" ? "2rem" : "3rem")};
   user-select: none;
 
   h1 {
@@ -15,10 +15,10 @@ const LogoText = styled.div`
   }
 `
 
-export default function Logo() {
+export default function Logo({ size }) {
   return (
     <>
-      <LogoText>
+      <LogoText size={size}>
         <AiOutlineCheckSquare />
         <h1>NoteMe</h1>
       </LogoText>
