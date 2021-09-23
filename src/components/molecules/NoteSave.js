@@ -15,15 +15,22 @@ export default function NoteSave({
   noteValue,
   currentNote,
   setCurrentNote,
-  setError
+  setNotification
 }) {
   const handleSave = async () => {
     setLoading(true)
 
-    await setNoteContentWithFirebase({ noteValue, currentNote, setError })
+    await setNoteContentWithFirebase({
+      noteValue,
+      currentNote,
+      setNotification
+    })
 
+    setNotification({
+      type: "success",
+      text: "You have successfully saved your Note!"
+    })
     setCurrentNote((prev) => ({ ...prev, content: noteValue }))
-
     setLoading(false)
   }
 

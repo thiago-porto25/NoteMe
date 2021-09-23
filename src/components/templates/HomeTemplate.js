@@ -5,6 +5,8 @@ import {
   NoteHeader,
   NoteContainer
 } from "../organisms"
+import { Notification } from "../atoms"
+import { AnimatePresence } from "framer-motion"
 
 const HomeTemplateContainer = styled.section`
   display: grid;
@@ -21,7 +23,7 @@ const HomeTemplateContainer = styled.section`
   }
 `
 
-export default function HomeTemplate() {
+export default function HomeTemplate({ notification, setNotification }) {
   return (
     <HomeTemplateContainer>
       <div className="sidebar">
@@ -32,6 +34,11 @@ export default function HomeTemplate() {
         <NoteHeader />
         <NoteContainer />
       </div>
+      <AnimatePresence exitBeforeEnter={true}>
+        {notification && (
+          <Notification message={notification} setMessage={setNotification} />
+        )}
+      </AnimatePresence>
     </HomeTemplateContainer>
   )
 }

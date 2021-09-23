@@ -10,7 +10,7 @@ import { v4 as uuid } from "uuid"
 import faker from "faker"
 
 //////////////Create Note
-export const createNoteWithFirebase = async ({ setError }) => {
+export const createNoteWithFirebase = async ({ setNotification }) => {
   try {
     const randomId = uuid()
 
@@ -25,7 +25,7 @@ export const createNoteWithFirebase = async ({ setError }) => {
 
     await setDoc(doc(db, "notes", randomId), defaultNote)
   } catch (error) {
-    setError(error)
+    setNotification({ type: "error", text: error.message })
   }
 }
 
@@ -33,7 +33,7 @@ export const createNoteWithFirebase = async ({ setError }) => {
 export const setNoteTitleWithFirebase = async ({
   titleValue,
   currentNote,
-  setError
+  setNotification
 }) => {
   try {
     const noteRef = doc(db, "notes", currentNote.id)
@@ -43,18 +43,21 @@ export const setNoteTitleWithFirebase = async ({
       { merge: true }
     )
   } catch (error) {
-    setError(error)
+    setNotification({ type: "error", text: error.message })
   }
 }
 
 //////////////Delete Note
-export const deleteNoteWithFirebase = async ({ currentNote, setError }) => {
+export const deleteNoteWithFirebase = async ({
+  currentNote,
+  setNotification
+}) => {
   try {
     const noteRef = doc(db, "notes", currentNote.id)
 
     await deleteDoc(noteRef)
   } catch (error) {
-    setError(error)
+    setNotification({ type: "error", text: error.message })
   }
 }
 
@@ -62,13 +65,13 @@ export const deleteNoteWithFirebase = async ({ currentNote, setError }) => {
 export const setNoteContentWithFirebase = async ({
   noteValue,
   currentNote,
-  setError
+  setNotification
 }) => {
   try {
     const noteRef = doc(db, "notes", currentNote.id)
 
     await setDoc(noteRef, { content: noteValue }, { merge: true })
   } catch (error) {
-    setError(error.message)
+    setNotification({ type: "error", text: error.message })
   }
 }

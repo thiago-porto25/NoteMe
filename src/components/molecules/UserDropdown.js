@@ -29,10 +29,10 @@ const UserDropdownContainer = styled.div`
 `
 
 export default function UserDropdown({ setDropdownUser }) {
-  const { setError } = useContext(NotesContext)
+  const { setNotification } = useContext(NotesContext)
 
   const handleClick = () => {
-    logoutWithFirebase({ setError })
+    logoutWithFirebase({ setNotification })
   }
 
   useEffect(() => {

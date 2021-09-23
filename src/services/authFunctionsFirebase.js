@@ -30,12 +30,11 @@ export const loginWithFirebase = async ({
 }
 
 //Logout
-export const logoutWithFirebase = async ({ setError }) => {
+export const logoutWithFirebase = async ({ setNotification }) => {
   try {
     await signOut(auth)
   } catch (error) {
-    setError(error)
-    console.log(error.message)
+    setNotification({ type: "error", text: error.message })
   }
 }
 

@@ -24,15 +24,18 @@ const SidebarHeaderContainer = styled.header`
 `
 
 export default function SidebarHeader() {
-  const { setError, userNotes } = useContext(NotesContext)
+  const { setNotification, userNotes } = useContext(NotesContext)
 
   const handleAdd = async () => {
     if (userNotes.length >= 8) {
-      setError("You have reached the maximum number of Notes!")
+      setNotification({
+        type: "error",
+        text: "You have reached the maximum number of Notes!"
+      })
       return
     }
 
-    await createNoteWithFirebase({ setError })
+    await createNoteWithFirebase({ setNotification })
   }
 
   return (

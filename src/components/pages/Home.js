@@ -8,13 +8,25 @@ export default function Home() {
   const user = useContext(UserContext)
   const { userNotes } = useNotes(user)
   const [currentNote, setCurrentNote] = useState(null)
-  const [error, setError] = useState(null)
+  const [notification, setNotification] = useState({
+    type: "error",
+    text: "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+  })
 
   return (
     <NotesContext.Provider
-      value={{ userNotes, currentNote, setCurrentNote, setError }}
+      value={{
+        userNotes,
+        currentNote,
+        setCurrentNote,
+        setNotification,
+        notification
+      }}
     >
-      <HomeTemplate />
+      <HomeTemplate
+        notification={notification}
+        setNotification={setNotification}
+      />
     </NotesContext.Provider>
   )
 }

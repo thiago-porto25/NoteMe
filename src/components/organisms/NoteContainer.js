@@ -21,7 +21,8 @@ const NoteContainerContainer = styled.div`
 `
 
 export default function NoteContainer() {
-  const { currentNote, setError, setCurrentNote } = useContext(NotesContext)
+  const { currentNote, setNotification, setCurrentNote } =
+    useContext(NotesContext)
 
   const [noteValue, setNoteValue] = useState("")
   const [titleValue, setTitleValue] = useState("")
@@ -35,7 +36,7 @@ export default function NoteContainer() {
           setTitleValue={setTitleValue}
           currentNote={currentNote}
           setCurrentNote={setCurrentNote}
-          setError={setError}
+          setNotification={setNotification}
         />
       </div>
       <div className="note-input-container">
@@ -47,7 +48,7 @@ export default function NoteContainer() {
       </div>
       <div className="note-buttons-container">
         <NoteSave
-          setError={setError}
+          setNotification={setNotification}
           loading={loading}
           setLoading={setLoading}
           noteValue={noteValue}

@@ -77,7 +77,7 @@ const NoteTitleContainer = styled.div`
 export default function NoteTitle({
   currentNote,
   setCurrentNote,
-  setError,
+  setNotification,
   titleValue,
   setTitleValue
 }) {
@@ -86,8 +86,19 @@ export default function NoteTitle({
   const inputRef = useRef(null)
 
   const handleSave = async () => {
-    await setNoteTitleWithFirebase({ titleValue, currentNote, setError })
-    setCurrentNote((prev) => ({ ...prev, title: titleValue }))
+    if (currentNote.title.trim() !== titleValue.trim()) {
+      await setNoteTitleWithFirebase({
+        titleValue,
+        currentNote,
+        setNotification
+      })
+      setNotification({
+        type: "success",
+        text: "You have successfully changed the title of your Note!"
+      })
+      setCurrentNote((prev) => ({ ...prev, title: titleValue.trim() }))
+    }
+
     setIsEditing(false)
   }
 

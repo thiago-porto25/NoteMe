@@ -42,7 +42,8 @@ const NoteHeaderContainer = styled.header`
 `
 
 export default function NoteHeader() {
-  const { currentNote, setCurrentNote, setError } = useContext(NotesContext)
+  const { currentNote, setCurrentNote, setNotification } =
+    useContext(NotesContext)
 
   const [dropdownUser, setDropdownUser] = useState(false)
   const [dropdownInfo, setDropdownInfo] = useState(false)
@@ -51,7 +52,7 @@ export default function NoteHeader() {
 
   const handleDelete = () => {
     setCurrentNote(null)
-    deleteNoteWithFirebase({ currentNote, setError })
+    deleteNoteWithFirebase({ currentNote, setNotification })
   }
 
   return (
