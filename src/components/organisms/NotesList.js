@@ -1,5 +1,6 @@
 import { useContext } from "react"
 import styled from "styled-components"
+import { NotesListEmpty } from "../atoms"
 import { NotesListItem } from "../molecules"
 import NotesContext from "../../context/notesContext"
 
@@ -22,7 +23,7 @@ export default function NotesList({ setMobileBarOpen, mobileBarOpen }) {
 
   return (
     <NotesListContainer>
-      {userNotes &&
+      {userNotes.length > 0 ? (
         userNotes.map((note, i) => (
           <NotesListItem
             currentNote={currentNote}
@@ -32,7 +33,10 @@ export default function NotesList({ setMobileBarOpen, mobileBarOpen }) {
             mobileBarOpen={mobileBarOpen}
             setMobileBarOpen={setMobileBarOpen}
           />
-        ))}
+        ))
+      ) : (
+        <NotesListEmpty />
+      )}
     </NotesListContainer>
   )
 }
