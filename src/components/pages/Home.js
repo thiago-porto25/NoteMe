@@ -8,10 +8,7 @@ export default function Home() {
   const user = useContext(UserContext)
   const { userNotes } = useNotes(user)
   const [currentNote, setCurrentNote] = useState(null)
-  const [notification, setNotification] = useState({
-    type: "error",
-    text: "Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"
-  })
+  const [notification, setNotification] = useState(null)
 
   return (
     <NotesContext.Provider
