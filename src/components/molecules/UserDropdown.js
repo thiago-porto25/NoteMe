@@ -14,6 +14,10 @@ const UserDropdownContainer = styled.div`
   align-items: center;
   transition: 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
 
+  @media (max-width: 550px) {
+    left: -5rem;
+  }
+
   p {
     margin: 0;
     padding: 1rem 2rem;
