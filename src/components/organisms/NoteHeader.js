@@ -78,6 +78,7 @@ export default function NoteHeader() {
 
         {dropdownInfo && (
           <InfoDropdown
+            setDropdownInfo={setDropdownInfo}
             data={{
               createdAt: currentNote.createdAt,
               updatedAt: currentNote.updatedAt
@@ -94,7 +95,7 @@ export default function NoteHeader() {
           {user.email}
         </UserDropdownToggle>
 
-        {dropdownUser && <UserDropdown />}
+        {dropdownUser && <UserDropdown setDropdownUser={setDropdownUser} />}
       </div>
     </NoteHeaderContainer>
   )

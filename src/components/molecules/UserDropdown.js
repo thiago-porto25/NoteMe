@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { FiLogOut } from "react-icons/fi"
 import { logoutWithFirebase } from "../../services/authFunctionsFirebase"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import NotesContext from "../../context/notesContext"
 
 const UserDropdownContainer = styled.div`
@@ -28,12 +28,24 @@ const UserDropdownContainer = styled.div`
   }
 `
 
-export default function UserDropdown() {
+export default function UserDropdown({ setDropdownUser }) {
   const { setError } = useContext(NotesContext)
 
   const handleClick = () => {
     logoutWithFirebase({ setError })
   }
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      setDropdownUser(false)
+    }
+
+    document.addEventListener("click", handleClickOutside)
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside)
+    }
+  }, [setDropdownUser])
 
   return (
     <UserDropdownContainer onClick={handleClick}>
