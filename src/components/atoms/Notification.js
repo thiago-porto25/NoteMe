@@ -15,6 +15,11 @@ const NotificationContainer = styled(motion.div)`
   display: flex;
   align-items: center;
 
+  @media (max-width: 500px) {
+    width: 80%;
+    left: calc(50% - 40%);
+  }
+
   p {
     padding: 0 1rem;
     color: white;
