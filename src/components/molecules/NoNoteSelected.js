@@ -14,12 +14,23 @@ const NoNoteSelectedContainer = styled.div`
     color: var(--primary);
     width: 80px;
     height: 80px;
+
+    @media (max-width: 600px) {
+      width: 65px;
+      height: 65px;
+    }
   }
 
   p {
     width: fit-content;
     font-size: 30px;
     font-weight: bold;
+    padding: 0 3rem;
+    text-align: center;
+
+    @media (max-width: 600px) {
+      font-size: 24px;
+    }
   }
 `
 
