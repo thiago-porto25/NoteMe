@@ -9,6 +9,12 @@ const Frame = styled.div`
   justify-content: space-evenly;
   box-shadow: 0 0 0 1px var(--thirdLayer);
   border-radius: 2px;
+
+  @media (max-width: 400px) {
+    width: 100%;
+    height: 100vh;
+    padding: 0 !important;
+  }
 `
 
 export default function AuthFrame({ children }) {

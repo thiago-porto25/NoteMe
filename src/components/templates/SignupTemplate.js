@@ -9,6 +9,10 @@ const Template = styled.div`
     @media (max-height: 600px) {
       display: block;
     }
+
+    @media (max-width: 400px) {
+      display: none;
+    }
   }
 `
 

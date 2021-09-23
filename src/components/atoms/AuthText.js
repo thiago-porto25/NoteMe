@@ -8,6 +8,11 @@ const Text = styled.p`
   width: 90%;
   text-align: justify;
   margin-bottom: 0;
+  user-select: none;
+
+  @media (max-width: 400px) {
+    width: 240px;
+  }
 `
 
 export default function AuthText({ children }) {

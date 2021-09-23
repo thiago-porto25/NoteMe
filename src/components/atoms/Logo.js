@@ -6,6 +6,7 @@ const LogoText = styled.div`
   align-items: center;
   color: var(--primary);
   font-size: 3rem;
+  user-select: none;
 
   h1 {
     font-family: "Lora", sans-serif;

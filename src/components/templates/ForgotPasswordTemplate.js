@@ -24,6 +24,10 @@ const LoginTemplateContainer = styled.section`
       width: 90%;
       text-align: justify;
       margin-bottom: 0;
+
+      @media (max-width: 400px) {
+        max-width: 250px;
+      }
     }
   }
 `

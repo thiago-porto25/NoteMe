@@ -17,6 +17,7 @@ const LoginTemplateContainer = styled.section`
 
   .login-image {
     max-width: 500px;
+    user-select: none;
 
     @media (max-width: 950px) {
       display: none;
