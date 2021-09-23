@@ -2,7 +2,6 @@ import { useContext } from "react"
 import styled from "styled-components"
 import { NotesListItem } from "../molecules"
 import NotesContext from "../../context/notesContext"
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
 
 const NotesListContainer = styled.div`
   overflow-y: scroll;
@@ -23,7 +22,7 @@ export default function NotesList({ setMobileBarOpen, mobileBarOpen }) {
 
   return (
     <NotesListContainer>
-      {userNotes.length ? (
+      {userNotes &&
         userNotes.map((note, i) => (
           <NotesListItem
             currentNote={currentNote}
@@ -33,12 +32,7 @@ export default function NotesList({ setMobileBarOpen, mobileBarOpen }) {
             mobileBarOpen={mobileBarOpen}
             setMobileBarOpen={setMobileBarOpen}
           />
-        ))
-      ) : (
-        <SkeletonTheme color="#444" highlightColor="#555">
-          <Skeleton count={3} height={70} />
-        </SkeletonTheme>
-      )}
+        ))}
     </NotesListContainer>
   )
 }
