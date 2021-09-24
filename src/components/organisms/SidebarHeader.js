@@ -16,7 +16,7 @@ const SidebarHeaderContainer = styled.header`
 
   .add-icon,
   .close-icon {
-    margin: 7.5px 20px;
+    margin: 0.53rem 20px;
     transition: 300ms ease-in-out;
 
     &:hover {
