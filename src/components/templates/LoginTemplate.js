@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { MaxWidthContainer, AuthFrame } from "../bosons"
 import { Logo, Anchor, AuthText } from "../atoms"
-import { LoginForm } from "../molecules"
+import { LoginForm, Footer } from "../molecules"
 import * as ROUTES from "../../constants/routes"
 
 const LoginTemplateContainer = styled.section`
@@ -54,6 +54,7 @@ export default function LoginTemplate() {
             Forgot your password?
           </Anchor>
         </AuthFrame>
+        <Footer />
       </LoginTemplateContainer>
     </MaxWidthContainer>
   )
